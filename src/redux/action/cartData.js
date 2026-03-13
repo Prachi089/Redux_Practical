@@ -1,0 +1,23 @@
+import { CART_DATA, REM_DATA, QUAN_DATA } from "../constant/counterConst"
+
+export const cartAction = (p_data) => {
+    return {
+        type: CART_DATA,        //it connect action & reducers(for identify for specfic reducer)
+        payload: p_data         //send data
+    }
+}
+
+export const cartRemoveAction = (id)=>{
+    return{
+        type:REM_DATA,
+        payload:id
+    }
+}
+
+export const quantityUpdateAction = (id, quantity)=>{
+    return{
+        type:QUAN_DATA,
+        payload:id,
+        quantity_type : quantity
+    }
+}
