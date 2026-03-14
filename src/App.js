@@ -13,6 +13,7 @@ import { ApiCall } from './components/FetchApi/ApiCall';
 import ApiCall2 from './components/FetchApi/ApiCall2';
 import ApiCall3 from './components/FetchApi/ApiCall3';
 import Cart from './components/Cart';
+import Wish from  './components/Wish';
 
 function App() {
 
@@ -29,7 +30,7 @@ function App() {
         {/* <Route path='/login' element={<Login />} /> */}
         {/* <Route path='/' element={<ApiCall3 />} /> */}
         <Route path='/cart' element={<Cart />} />
-
+        <Route path='/wish' element={<Wish/>} />
         <Route path='/about' element={
           <ProtectedaRoute>
             <About />

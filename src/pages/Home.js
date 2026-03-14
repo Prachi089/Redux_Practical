@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { cartAction } from '../redux/action/cartData'
+import { wishUpdateAction } from '../redux/action/cartData'
 
 const Home = () => {
 
@@ -22,6 +23,10 @@ const Home = () => {
 
     const handleCart = (p_data) => {
         dispatch(cartAction(p_data))
+    }
+
+    const handleWish = (s_data) => {
+        dispatch(wishUpdateAction(s_data))
     }
 
 
@@ -80,6 +85,19 @@ const Home = () => {
                         onClick={() => handleCart(item)}
                     >
                         Add to Cart
+                    </button>
+                    &nbsp;
+                      <button style={{
+                        padding: "8px 15px",
+                        border: "none",
+                        borderRadius: "5px",
+                        backgroundColor: "#000",
+                        color: "#fff",
+                        cursor: "pointer"
+                    }}
+                        onClick={()=>{handleWish(item)}}
+                    >
+                        wishlist
                     </button>
 
                 </div>

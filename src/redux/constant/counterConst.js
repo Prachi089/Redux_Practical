@@ -10,3 +10,4 @@ export const REM_DATA ="REM_DATA";
 export const QUAN_DATA="QUAN_DATA"
 
 
+export const WISH_DATA="WISH_DATA"
