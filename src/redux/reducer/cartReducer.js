@@ -22,7 +22,7 @@ export const cartReducer = (state = initialValue, action) => {
             alert("Item Added in cart")
             return {
                 ...state,
-                cart_product: [...state.cart_product, {...action.payload, quantity:1}]
+                cart_product: [...state.cart_product, { ...action.payload, quantity: 1 }]
             }
         case REM_DATA:
             const remove = state.cart_product.filter((item) => item.id != action.payload)
@@ -33,26 +33,27 @@ export const cartReducer = (state = initialValue, action) => {
             }
 
         case QUAN_DATA:
-            console.log(state.cart_product)
+            // console.log(state.cart_product)
             return {
                 ...state,
-                cart_product: state.cart_product?.map((item)=>{
-                    if(item?.id == item?.payload){
+                cart_product: state.cart_product?.map((item) => {
+                    if (item?.id === action.payload) {
                         let quant = item?.quantity || 1;
-                        if(action?.quantity_type == "incer"){
-                           return {
-                            ...item,
-                            quantity:quant+1
-                           } 
+                        if (action?.quantity_type === "incer") {
+                            return {
+                                ...item,
+                                quantity: quant + 1
+                            }
                         }
 
-                        if(action?.quantity_type == "decr"){
-                           return {
-                            ...item,
-                            quantity:quant-1
-                           } 
+                        if (action?.quantity_type === "decr") {
+                            return {
+                                ...item,
+                                quantity: quant > 1 ? quant-1 : 1
+                            }
                         }
                     }
+                    return item;
                 })
             }
 

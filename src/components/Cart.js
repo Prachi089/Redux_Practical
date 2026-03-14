@@ -1,20 +1,26 @@
 import React from 'react'
 import './cart.css'
-import { useSelector ,useDispatch} from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { cartRemoveAction, quantityUpdateAction } from '../redux/action/cartData';
 
 const Cart = () => {
     const dispatch = useDispatch();
     const temp_data = useSelector((state) => state.cartReducer.cart_product);
-    // console.log(temp_data, "prachi jhcgjnfmh" )
+    // console.log(temp_data, "prachi jhcgjnfmh")
 
-    const handleRemove=(id)=>{
+    const handleRemove = (id) => {
         dispatch(cartRemoveAction(id))
-        
+
     }
-    const quantityUpdate=(id, quantity)=>{
-          dispatch(quantityUpdateAction(id, quantity))
+    const quantityUpdate = (id, quantity) => {
+        dispatch(quantityUpdateAction(id, quantity))
     }
+
+    let price = 0;
+    temp_data?.map((item) => {
+        price = (price + (item?.price - 2) * item?.quantity)
+    })
+
 
     return (
         <div>
@@ -32,22 +38,22 @@ const Cart = () => {
 
                                 <div class="product-info">
                                     <h3>{item?.title}</h3>
-                                    <p>Description: {item?.description.slice(1,50)} ...</p>
+                                    <p>Description: {item?.description.slice(1, 50)} ...</p>
                                     <p class="seller">Seller: RetailNet</p>
 
                                     <div class="price">
-                                        <span class="new-price">₹{item?.price-2}</span>
+                                        <span class="new-price">₹{item?.price - 2}</span>
                                         <span class="old-price">₹{item?.price}</span>
                                         <span class="discount">14% off</span>
                                     </div>
 
                                     <div class="actions">
                                         <button>Save for later</button>
-                                        <button onClick={()=>handleRemove(item?.id)}>Remove</button>
+                                        <button onClick={() => handleRemove(item?.id)}>Remove</button>
                                         <div className='quantity'>
-                                            <button onClick={()=>quantityUpdate(item?.id, "decr")}>-</button>
-                                                <span>2 </span>
-                                            <button onClick={()=>quantityUpdate(item?.id, "incer")}>+</button>
+                                            <button onClick={() => quantityUpdate(item?.id, "decr")}>-</button>
+                                            <span>{item.quantity}</span>
+                                            <button onClick={() => quantityUpdate(item?.id, "incer")}>+</button>
                                         </div>
                                     </div>
                                 </div>
@@ -60,8 +66,11 @@ const Cart = () => {
                     <h3>PRICE DETAILS</h3>
 
                     <div class="row">
-                        <span>Price (1 item)</span>
-                        <span>₹59,999</span>
+                        <span>Price</span>
+                        <span>{price.toFixed(2)}</span>
+                        {/* {temp_data.map((item) =>
+                            <span>{item?.price - 2}</span>
+                        )} */}
                     </div>
 
                     <div class="row">
@@ -73,7 +82,9 @@ const Cart = () => {
 
                     <div class="row total">
                         <span>Total Amount</span>
-                        <span>₹59,999</span>
+
+                        <span>₹{price.toFixed(2)}</span>
+
                     </div>
 
                     <button class="order-btn">PLACE ORDER</button>
