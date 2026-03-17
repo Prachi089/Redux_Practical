@@ -15,7 +15,7 @@ const Login = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (formData.username == "user" && formData.password == "123") {
+        if (formData.username == "prachi" && formData.password == "123") {
             localStorage.setItem('token', "ksdhkhskdksjhdfkjhsdfkjhsdf")
             navigate("/")
 

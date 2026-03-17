@@ -1,10 +1,14 @@
 import React from 'react'
 import './wish.css'
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Wish = () => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const wish_data = useSelector((state) => state.wishcartReducer.wish_data);
+
 
 
 
@@ -69,7 +73,7 @@ const Wish = () => {
 
                     </div>
 
-                    <button class="order-btn">PLACE ORDER</button>
+                    <button class="order-btn" onClick={()=>navigate('/payment')}>PLACE ORDER</button>
                 </div>
 
             </div>
